@@ -11,7 +11,11 @@ module TypeScript
     end
 
     def self.compiler_path
-      @compiler_path ||= compiler_bundled_path
+      @compiler_path ||= ENV['TYPESCRIPT_COMPILER_PATH'] || compiler_bundled_path
+    end
+
+    def self.lib_path
+      @lib_path ||= ENV['TYPESCRIPT_LIB_PATH'] || lib_bundled_path
     end
 
     def self.path=(path)
@@ -21,6 +25,10 @@ module TypeScript
 
     def self.contents
       @contents ||= "#{File.read(path)}\n#{File.read(compiler_path)}"
+    end
+
+    def self.lib_contents
+      @lib_contents ||= File.read(lib_path)
     end
 
     def self.version
@@ -58,7 +66,7 @@ module TypeScript
         options[:bare] = false
       end
 
-      Source.context.call("RubyTypeScriptCompiler", '', script, options)
+      Source.context.call("RubyTypeScriptCompiler", Source.lib_contents, script, options)
     end
   end
 end

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name      = 'typescript'
-  s.version   = '0.1'
+  s.version   = '0.1.1'
   s.date      = '2012-10-03'
 
   s.homepage    = "https://github.com/TimothyKlim/typescript-ruby"
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 #    'README.md'
   ]
 
-  s.add_dependency 'typescript-source'
+  s.add_dependency 'typescript-source', '0.8.0.1'
   s.add_dependency 'execjs'
 
   s.authors = ['TimothyKlim']
